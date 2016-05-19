@@ -2,6 +2,10 @@ wrk() {
 	docker run --rm tsaqib/wrk-alpine $@; 
 }
 
+stress() { 
+	docker run --rm tsaqib/stress-alpine $@; 
+}
+
 imgs() {
 	docker images -a
 }
