@@ -40,4 +40,5 @@ stress                      # http://people.seas.harvard.edu/~apw/stress/
 Relevant Docker images:
 - https://hub.docker.com/r/tsaqib/wrk-alpine/ (4MB)
 - https://hub.docker.com/r/tsaqib/stress-alpine/ (4MB)
+- https://hub.docker.com/r/tsaqib/py-alpine/ (14MB)
 
