@@ -37,16 +37,19 @@ delnone                     # Remove all images that are in state <none>
 simws                       # Launches a Python simple webserver from the current directory
 simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
+py <python-file>            # Executes Python script found in the currect directory, has issues.
 ``` 
 
 ##### Testing 
 ```bash
-wrk                         # https://github.com/wg/wrk
-stress                      # http://people.seas.harvard.edu/~apw/stress/
+wrk                         # https://github.com/wg/wrk | Example: wrk http://example.com 
+stress                      # http://people.seas.harvard.edu/~apw/stress/ | Example: stress
+able                        # https://httpd.apache.org/docs/2.4/programs/ab.html | Example: ab -n 100 -c 10 http://example.com/
 ```
 
 Relevant Docker images:
 - https://hub.docker.com/r/tsaqib/wrk-alpine/ (4MB)
 - https://hub.docker.com/r/tsaqib/stress-alpine/ (4MB)
 - https://hub.docker.com/r/tsaqib/py-alpine/ (14MB)
+- https://hub.docker.com/r/jess/ab/ (5MB)
 

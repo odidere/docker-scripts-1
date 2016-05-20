@@ -67,5 +67,9 @@ stress() {
 	docker run --rm tsaqib/stress-alpine $@
 }
 
+ab() { 
+	docker run --rm jess/ab $@
+}
+
 dock
 eval "$(docker-machine env default)"
