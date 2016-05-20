@@ -44,7 +44,8 @@ py <python-file>            # Executes Python script found in the currect direct
 ```bash
 wrk                         # https://github.com/wg/wrk | Example: wrk http://example.com 
 stress                      # http://people.seas.harvard.edu/~apw/stress/ | Example: stress
-able                        # https://httpd.apache.org/docs/2.4/programs/ab.html | Example: ab -n 100 -c 10 http://example.com/
+able                        # https://httpd.apache.org/docs/2.4/programs/ab.html 
+                            # Example: ab -n 100 -c 10 http://example.com/
 ```
 
 Relevant Docker images:
