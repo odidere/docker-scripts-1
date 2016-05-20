@@ -12,9 +12,29 @@ If you'd like to build the images locally that are required by the scripts:
 ```
 
 Now you should be able to access sweet shortcuts on a new Terminal, for example:
+##### General Docker usage
 ```bash
-wrk             # https://github.com/wg/wrk
-stress          # http://people.seas.harvard.edu/~apw/stress/
+conts                       # List all containers
+contbash <container-name>   # ssh-ing into a console for a containers
+contlogs <container-name>   # Tailing logs for the specified container
+delcont <container-name>    # Remove specified container
+delconts                    # Remove all containers
+
+imgs                        # List all images
+delimg <image-name>         # Remove a specified image
+delimgs                     # Remove all images
+delnone                     # Remove all images that are in state <none>
+```
+##### Development 
+```bash
+simws                       # Launches a Python simple webserver from the current directory
+simwsp <port>               # Same as above, but specified by a port
+``` 
+
+##### Testing 
+```bash
+wrk                         # https://github.com/wg/wrk
+stress                      # http://people.seas.harvard.edu/~apw/stress/
 ```
 
 Relevant Docker images:
