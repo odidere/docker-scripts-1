@@ -6,5 +6,5 @@ permtosh:
 	chmod -R 777 $(CURDIR);
 	echo "source $(CURDIR)/functions.sh" >> ~/.bash_profile;
 	
-clean :
-	rm -rf $(pwd)/.*
+#unmake :
+#	rm -rf $(pwd)/.*

@@ -49,13 +49,13 @@ py() {
 simws() { 
 	docker rm -f $(docker ps -a | grep ':8000->' | awk '{print $1}')
 	echo -e '\n----- (known issue of aggressive caching) Now browse to http://'$(docker-machine ip):8000' -----\n'
-	docker run -p 8000:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer 8000
+	docker run --rm -p 8000:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000  
 }
 
 simwsp() { 
 	docker rm -f $(docker ps -a | grep ':$1->' | awk '{print $1}')
 	echo -e '\n----- Now browse to http://'$(docker-machine ip)':'$1' -----\n'
-	docker run --rm -p $1:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer 8000
+	docker run --rm -p $1:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000
 }
 
 # -------- Testing
