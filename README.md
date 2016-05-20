@@ -8,12 +8,12 @@ $ make
 
 If you'd like to build the images locally that are required by the scripts:
 ```bash
-./build-images.sh
+$ ./build-images.sh
 ```
 
 If you'd like to download the images locally only, but build them:
 ```bash
-./download-images.sh
+$ ./download-images.sh
 ```
 
 Now you should be able to access sweet shortcuts on a new Terminal, for example:
