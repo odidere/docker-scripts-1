@@ -14,6 +14,8 @@ If you'd like to build the images locally that are required by the scripts:
 Now you should be able to access sweet shortcuts on a new Terminal, for example:
 ##### General Docker usage
 ```bash
+dock                        # Starts Docker machine 
+
 conts                       # List all containers
 contbash <container-name>   # ssh-ing into a console for a containers
 contlogs <container-name>   # Tailing logs for the specified container
@@ -29,6 +31,7 @@ delnone                     # Remove all images that are in state <none>
 ```bash
 simws                       # Launches a Python simple webserver from the current directory
 simwsp <port>               # Same as above, but specified by a port
+                            # Known issue of aggressive caching
 ``` 
 
 ##### Testing 

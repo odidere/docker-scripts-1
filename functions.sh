@@ -1,27 +1,9 @@
-wrk() { 
-	docker run --rm tsaqib/wrk-alpine $@; 
+dock() { 
+	docker-machine start 
+	docker-machine ls 
 }
 
-stress() { 
-	docker run --rm tsaqib/stress-alpine $@; 
-}
-
-py() {
-	docker run --rm -p 8000:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python $@
-}
-
-simws() { 
-	echo 'Turns the current directory into a simple HTTP server.'
-	docker rm -f $(docker ps -a | grep :8000-> | awk '{print $1}')
-	docker run --rm -p 8000:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer 8000 
-}
-
-simwsp() { 
-	echo 'Turns the current directory into a simple HTTP server at a specified port.'
-	docker rm -f $(docker ps -a | grep :$1-> | awk '{print $1}')
-	docker run --rm -p $1:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer $1 
-}
-
+# -------- Containers
 conts() {
 	docker ps -a
 }
@@ -42,6 +24,7 @@ delconts() {
 	docker rm -f $(docker ps -a -q)
 }
 
+# -------- Images
 imgs() {
 	docker images -a
 }
@@ -58,6 +41,31 @@ delnone() {
 	docker rmi -f $(imgs | grep '<none>' | awk '{print $3}')	
 }
 
-echo 'Starting Docker...'
-docker-machine start
+# -------- Development
+py() {
+	docker run --rm -v `pwd`:/usr/local/website -w /usr/local/website tsaqib/py-alpine python $@
+}
+
+simws() { 
+	docker rm -f $(docker ps -a | grep ':8000->' | awk '{print $1}')
+	echo -e '\n----- (known issue of aggressive caching) Now browse to http://'$(docker-machine ip):8000' -----\n'
+	docker run -p 8000:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer 8000
+}
+
+simwsp() { 
+	docker rm -f $(docker ps -a | grep ':$1->' | awk '{print $1}')
+	echo -e '\n----- Now browse to http://'$(docker-machine ip)':'$1' -----\n'
+	docker run --rm -p $1:8000 -v `pwd`:`pwd` -w `pwd` tsaqib/py-alpine python -m SimpleHTTPServer 8000
+}
+
+# -------- Testing
+wrk() { 
+	docker run --rm tsaqib/wrk-alpine $@
+}
+
+stress() { 
+	docker run --rm tsaqib/stress-alpine $@
+}
+
+dock
 eval "$(docker-machine env default)"
