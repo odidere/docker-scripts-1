@@ -22,7 +22,7 @@ Now you should be able to access sweet shortcuts on a new Terminal, for example:
 dock                        # Starts Docker machine 
 
 conts                       # List all containers
-contbash <container-name>   # ssh-ing into a console for a containers
+contsh <container-name>     # Log into the shell for a container
 contlogs <container-name>   # Tailing logs for the specified container
 delcont <container-name>    # Remove specified container
 delconts                    # Remove all containers

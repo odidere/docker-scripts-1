@@ -8,8 +8,8 @@ conts() {
 	docker ps -a
 }
 
-contbash() {
-	docker exec -it $1 /bin/bash
+contsh() {
+	docker exec -it $1 sh
 }
 
 contlogs() {
