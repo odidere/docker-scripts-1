@@ -47,7 +47,7 @@ bahmni                      # (doesn't work yet) Runs Bahmni at port 10201
 
 ##### Development 
 ```bash
-mysql                       # Launches MySQL, user: root, password: root, port: 10301
+mysql                       # (unavailable now) Launches MySQL, user: root, password: root, port: 10301
 simws                       # Launches a Python simple webserver from the current directory
 simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
