@@ -52,6 +52,7 @@ simws                       # Launches a Python simple webserver from the curren
 simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
 py <python-file>            # Executes Python script found in the currect directory, has issues
+alpine                      # Launches an Alpine Linux instance 
 ``` 
 
 ##### Testing 
@@ -60,13 +61,17 @@ wrk                         # https://github.com/wg/wrk | Example: wrk http://ex
 stress                      # http://people.seas.harvard.edu/~apw/stress/ | Example: stress
 ab                          # https://httpd.apache.org/docs/2.4/programs/ab.html 
                             # Example: ab -n 100 -c 10 http://example.com/
+wpscan <url>                # http://wpscan.org
+nmap                        # https://nmap.org
 ```
 
 Relevant Docker images:
 - https://hub.docker.com/r/tsaqib/wrk-alpine/ (4MB)
 - https://hub.docker.com/r/tsaqib/stress-alpine/ (4MB)
-- https://hub.docker.com/r/tsaqib/py-alpine/ (14MB)
 - https://hub.docker.com/r/jess/ab/ (5MB)
+- https://hub.docker.com/r/tsaqib/py-alpine/ (14MB)
 - https://hub.docker.com/_/postgres/ (101MB)
 - https://hub.docker.com/_/odoo/ (272MB)
 - https://hub.docker.com/r/bahmni/bahmni/ (840MB)
+- https://hub.docker.com/r/evild/alpine-wpscan/ (83MB)
+- https://hub.docker.com/r/tsaqib/nmap-alpine/ (6MB)

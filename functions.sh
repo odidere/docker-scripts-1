@@ -46,6 +46,29 @@ get() {
 	docker run --rm -v "$PWD":/usr/local/ -w /usr/local/ alpine wget $@
 }
 
+# -------- Applications
+odoo9() {
+	docker rm -f odoodb odoo9
+	echo -e '\n----- addon directory: '$PWD' and conf directory: '$PWD'/conf'
+	echo -e '----- Once setup, navigate to http://'$(docker-machine ip):10101' -----\n'
+	docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name odoodb postgres
+	docker run -it -p 10101:8069 -v "$PWD":/mnt/extra-addons -v "$PWD"/conf:/etc/odoo --name odoo9 --link odoodb:db -t odoo
+}
+
+odoo9p() {
+	echo -e '\n----- addon directory: '$PWD' and conf directory: '$PWD'/conf'
+	echo -e '----- Once setup, navigate to http://'$(docker-machine ip)':'$1' -----\n'
+	docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name odoodb postgres
+	docker run -it -p $1:8069 -v "$PWD":/mnt/extra-addons -v "$PWD"/conf:/etc/odoo --link odoodb:db -t odoo
+}
+
+bahmni() {
+	echo 'Does not work yet!'
+	docker rm -f bahmni 
+	echo -e '\n----- Once setup, navigate to http://'$(docker-machine ip):10201' -----\n'
+	docker run -it -p 10201:8069 --name bahmni bahmni/bahmni
+}
+
 # -------- Development
 py() {
 	docker run --rm -v `pwd`:/usr/local/website -w /usr/local/website tsaqib/py-alpine python $@
@@ -63,6 +86,10 @@ simwsp() {
 	docker run --rm -p $1:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000
 }
 
+alpine() {
+	docker run -it alpine sh
+}
+
 # -------- Testing
 wrk() { 
 	docker run --rm tsaqib/wrk-alpine $@
@@ -76,27 +103,18 @@ ab() {
 	docker run --rm jess/ab $@
 }
 
-odoo9() {
-	docker rm -f odoodb odoo9
-	echo -e '\n----- addon directory: '$PWD' and conf directory: '$PWD'/conf'
-	echo -e '----- Once setup, navigate to http://'$(docker-machine ip):10101' -----\n'
-	docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name odoodb postgres
-	docker run -it -p 10101:8069 -v "$PWD":/mnt/extra-addons -v "$PWD"/conf:/etc/odoo --name odoo9 --link odoodb:db -t odoo
+wpscanu() {
+	docker run --rm evild/alpine-wpscan wpcan --update
 }
 
-odoo9p() {
-	echo -e '\n----- addon directory: '$PWD' and conf directory: '$PWD'/conf'
-	echo -e '----- Once setup, navigate to http://'$(docker-machine ip)':'$1' -----\n'
-	docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name odoodb postgres
-	docker run -it -p $1:8069 -v "$PWD":/mnt/extra-addons -v "$PWD"/conf:/etc/odoo --link odoodb:db -t odoo
+wpscan() {
+	echo 'Do not forget to execute "wpscanu" to perform an update first. Scanning now...'
+	docker run --rm evild/alpine-wpscan wpcan -u $1 -r -e p,t,u --follow-redirection --batch
 }
 
-# Does not work yet
-#bahmni() {
-#	docker rm -f bahmni 
-#	echo -e '\n----- Once setup, navigate to http://'$(docker-machine ip):10201' -----\n'
-#	docker run -it -p 10201:8069 --name bahmni bahmni/bahmni
-#}
+nmap() {
+	docker run --rm tsaqib/nmap-alpine $@
+}
 
 dock
 eval "$(docker-machine env default)"

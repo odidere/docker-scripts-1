@@ -1,6 +1,8 @@
+docker pull alpine
 docker pull tsaqib/wrk-alpine
 docker pull tsaqib/stress-alpine
 docker pull tsaqib/py-alpine
+docker pull tsaqib/nmap-alpine
 docker pull jess/ab
 docker pull postgres
 docker pull odoo
