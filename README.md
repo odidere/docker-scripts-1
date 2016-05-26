@@ -21,6 +21,7 @@ Now you should be able to access sweet shortcuts on a new Terminal, for example:
 ```bash
 dock                        # Starts Docker machine 
 
+cont <img-name>             # New container from the specified image name 
 conts                       # List all containers
 contsh <container-name>     # Log into the shell for a container
 contlogs <container-name>   # Tailing logs for the specified container

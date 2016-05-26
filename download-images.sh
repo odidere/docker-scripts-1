@@ -7,3 +7,4 @@ docker pull jess/ab
 docker pull postgres
 docker pull odoo
 docker pull bahmni/bahmni
+docker pull java:jdk-alpine

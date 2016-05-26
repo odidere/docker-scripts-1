@@ -4,6 +4,10 @@ dock() {
 }
 
 # -------- Containers
+cont() {
+	docker run -it $1 sh
+}
+
 conts() {
 	docker ps -a
 }
