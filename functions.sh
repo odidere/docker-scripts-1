@@ -75,11 +75,11 @@ bahmni() {
 }
 
 # -------- Development
-springboot() {
+springb() {
 	springbootp $1 10301
 }
 
-springbootp() {
+springbp() {
 	echo -e '\n----- Assuming current directory has pom.xml, so that it can be built.'
 	echo -e '----- Usage: springboot target/app.jar (future path)'
 	echo -e '----- Once done, navigate to http://'$(docker-machine ip)':'$2'/'

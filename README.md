@@ -54,9 +54,9 @@ simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
 py <python-file>            # Executes Python script found in the currect directory, has issues
 alpine                      # Launches an Alpine Linux instance 
-springboot <target>         # Builds the project thru Maven from current dir., and runs target jar
+springb <target>            # Builds the project thru Maven from current dir., and runs target jar
                             # Example: springboot target/gs-spring-boot-0.1.0.jar
-springbootp <target> <port> # Runs above on a specified port
+springbp <target> <port>    # Runs above on a specified port
 springbd                    # Runs above example 
 springbdp <port>            # Runs above example on a specified post
 ``` 
