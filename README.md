@@ -54,6 +54,11 @@ simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
 py <python-file>            # Executes Python script found in the currect directory, has issues
 alpine                      # Launches an Alpine Linux instance 
+springboot <target>         # Builds the project thru Maven from current dir., and runs target jar
+                            # Example: springboot target/gs-spring-boot-0.1.0.jar
+springbootp <target> <port> # Runs above on a specified port
+springbd                    # Runs above example 
+springbdp <port>            # Runs above example on a specified post
 ``` 
 
 ##### Testing 
@@ -70,9 +75,10 @@ Relevant Docker images:
 - https://hub.docker.com/r/tsaqib/wrk-alpine/ (4MB)
 - https://hub.docker.com/r/tsaqib/stress-alpine/ (4MB)
 - https://hub.docker.com/r/jess/ab/ (5MB)
+- https://hub.docker.com/r/tsaqib/nmap-alpine/ (6MB)
 - https://hub.docker.com/r/tsaqib/py-alpine/ (14MB)
+- https://hub.docker.com/r/evild/alpine-wpscan/ (83MB)
+- https://hub.docker.com/r/tsaqib/springboot-alpine/ (91MB)
 - https://hub.docker.com/_/postgres/ (101MB)
 - https://hub.docker.com/_/odoo/ (272MB)
 - https://hub.docker.com/r/bahmni/bahmni/ (840MB)
-- https://hub.docker.com/r/evild/alpine-wpscan/ (83MB)
-- https://hub.docker.com/r/tsaqib/nmap-alpine/ (6MB)

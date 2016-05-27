@@ -10,4 +10,7 @@ cd stress-alpine && ./build.sh && cd ..
 echo -e '\nBuilding tsaqib/nmap-alpine...'
 cd nmap-alpine && ./build.sh && cd ..
 
+echo -e '\nBuilding tsaqib/springboot-alpine...'
+cd springboot-alpine && ./build.sh && cd ..
+
 echo 'Completed.'
