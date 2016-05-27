@@ -76,7 +76,7 @@ bahmni() {
 
 # -------- Development
 springb() {
-	springbootp $1 10301
+	springbp $1 10301
 }
 
 springbp() {
@@ -98,7 +98,7 @@ springbd() {
 }
 
 springbdp() {
-	springbootp target/gs-spring-boot-0.1.0.jar $1
+	springbp target/gs-spring-boot-0.1.0.jar $1
 }
 
 py() {
