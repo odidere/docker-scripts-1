@@ -105,6 +105,16 @@ py() {
 	docker run --rm -v `pwd`:/usr/local/website -w /usr/local/website tsaqib/py-alpine python $@
 }
 
+pg() {
+	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':10301 with user=postgres, password=postgres\n'
+	docker run --name=postgres -e POSTGRES_PASSWORD=postgres -p 10301:5432 -d postgres
+}
+
+pgp() {
+	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':'$3' with user='$1', password='$2'\n'
+	docker run -e POSTGRES_USER=$1 -e POSTGRES_PASSWORD=$2 -p $3:5432 -d postgres
+}
+
 simws() { 
 	docker rm -f $(docker ps -a | grep ':8000->' | awk '{print $1}')
 	echo -e '\n----- (known issue of aggressive caching) Once setup, navigate to http://'$(docker-machine ip):8000'\n'

@@ -48,7 +48,8 @@ bahmni                      # (doesn't work yet) Runs Bahmni at port 10201
 
 ##### Development 
 ```bash
-mysql                       # (unavailable now) Launches MySQL, user: root, password: root, port: 10301
+pg                          # Launches PostgreSQL, user: postgresql, password: postgresql, port: 10301
+pgp <user> <pwd> <port>     # PostgreSQL, at the specified user, password & port
 simws                       # Launches a Python simple webserver from the current directory
 simwsp <port>               # Same as above, but specified by a port
                             # Known issue of aggressive caching
@@ -57,7 +58,7 @@ alpine                      # Launches an Alpine Linux instance
 springb <target>            # Builds the project thru Maven from current dir., and runs target jar
                             # Example: springboot target/gs-spring-boot-0.1.0.jar
 springbp <target> <port>    # Runs above on a specified port
-springbd                    # Runs above example 
+springbd                    # Runs above example on 10301 port
 springbdp <port>            # Runs above example on a specified post
 ``` 
 
