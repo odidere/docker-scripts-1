@@ -9,3 +9,5 @@ docker pull postgres
 docker pull odoo
 docker pull bahmni/bahmni
 docker pull postgres
+docker pull redis
+docker pull rabbitmq

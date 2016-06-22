@@ -3,6 +3,11 @@ dock() {
 	docker-machine ls 
 }
 
+resetdock() {
+	docker-machine rm default
+	docker-machine create --driver virtualbox default
+}
+
 # -------- Containers
 cont() {
 	docker run -it $1 sh
@@ -75,6 +80,36 @@ bahmni() {
 }
 
 # -------- Development
+pg() {
+	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':10301 with user=postgres, password=postgres\n'
+	docker run --name=postgres -e POSTGRES_PASSWORD=postgres -p 10301:5432 -d postgres
+}
+
+pgp() {
+	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':'$3' with user='$1', password='$2'\n'
+	docker run -e POSTGRES_USER=$1 -e POSTGRES_PASSWORD=$2 -p $3:5432 -d postgres
+}
+
+simws() { 
+	docker rm -f $(docker ps -a | grep ':8000->' | awk '{print $1}')
+	echo -e '\n----- (known issue of aggressive caching) Once setup, navigate to http://'$(docker-machine ip):8000'\n'
+	docker run --rm -p 8000:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000  
+}
+
+simwsp() { 
+	docker rm -f $(docker ps -a | grep ':$1->' | awk '{print $1}')
+	echo -e '\n----- Once setup, navigate to http://'$(docker-machine ip)':'$1'\n'
+	docker run --rm -p $1:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000
+}
+
+py() {
+	docker run --rm -v `pwd`:/usr/local/website -w /usr/local/website tsaqib/py-alpine python $@
+}
+
+alpine() {
+	docker run -it alpine sh
+}
+
 springb() {
 	springbp $1 10301
 }
@@ -101,34 +136,14 @@ springbdp() {
 	springbp target/gs-spring-boot-0.1.0.jar $1
 }
 
-py() {
-	docker run --rm -v `pwd`:/usr/local/website -w /usr/local/website tsaqib/py-alpine python $@
+redis() {
+	echo -e '\n----- Once setup, IP='$(docker-machine ip)', PORT=6379\n'
+	docker run -itd redis
 }
 
-pg() {
-	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':10301 with user=postgres, password=postgres\n'
-	docker run --name=postgres -e POSTGRES_PASSWORD=postgres -p 10301:5432 -d postgres
-}
-
-pgp() {
-	echo -e '\n----- Once setup, connect to '$(docker-machine ip)':'$3' with user='$1', password='$2'\n'
-	docker run -e POSTGRES_USER=$1 -e POSTGRES_PASSWORD=$2 -p $3:5432 -d postgres
-}
-
-simws() { 
-	docker rm -f $(docker ps -a | grep ':8000->' | awk '{print $1}')
-	echo -e '\n----- (known issue of aggressive caching) Once setup, navigate to http://'$(docker-machine ip):8000'\n'
-	docker run --rm -p 8000:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000  
-}
-
-simwsp() { 
-	docker rm -f $(docker ps -a | grep ':$1->' | awk '{print $1}')
-	echo -e '\n----- Once setup, navigate to http://'$(docker-machine ip)':'$1'\n'
-	docker run --rm -p $1:8000 -v "$PWD":/usr/src/ -w /usr/src/ tsaqib/py-alpine python -m SimpleHTTPServer 8000
-}
-
-alpine() {
-	docker run -it alpine sh
+rabbitmq() {
+	docker run -d --hostname my-rabbitmq --name my-rabbitmq rabbitmq
+	contlogs my-rabbitmq
 }
 
 # -------- Testing

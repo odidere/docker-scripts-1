@@ -20,6 +20,7 @@ Now you should be able to access sweet shortcuts on a new Terminal, for example:
 ##### General Docker usage
 ```bash
 dock                        # Starts Docker machine 
+resetdock                   # Destroys current Docker VM, and reinstalls it back
 
 cont <img-name>             # New container from the specified image name 
 conts                       # List all containers
@@ -60,6 +61,8 @@ springb <target>            # Builds the project thru Maven from current dir., a
 springbp <target> <port>    # Runs above on a specified port
 springbd                    # Runs above example on 10301 port
 springbdp <port>            # Runs above example on a specified post
+redis                       # Runs a Redis instance at 6379
+rabbitmq                    # Runs a RabbitMQ instance namely my-rabbitmq
 ``` 
 
 ##### Testing 
