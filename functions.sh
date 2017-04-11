@@ -46,6 +46,10 @@ rmimgs() {
 	docker rmi $(docker images -q)
 }
 
+rmimgsf() {
+	docker rmi -f $(docker images -qf dangling=true)
+}
+
 rmnone() {
 	docker rmi -f $(imgs | grep '<none>' | awk '{print $3}')	
 	docker rmi $(docker images -q --filter "dangling=true")
@@ -172,7 +176,8 @@ nmap() {
 	docker run --rm tsaqib/nmap-alpine $@
 }
 
-dock
-eval "$(docker-machine env default)"
+# The following are unnecessary now since Docker's new MacOS app is more stable.
+#dock
+#eval "$(docker-machine env default)"
 
 
